@@ -1,0 +1,949 @@
+﻿@model List<Compare>
+@{
+    Layout = "_Translatelayout";
+
+}
+
+<style>
+    .long{
+        background-color:darkorange;
+        width:50px;
+        border:3px solid orange;
+    }
+    .short{
+        width:20px;
+        background-color:darkorange;
+        border:3px solid orange;
+
+    }
+    .label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+.lblCartCount {
+    font-size: 1rem;
+    background: #ff9100!important;
+    color: #fff;
+    padding: 3px 5px;
+    vertical-align: top;
+    margin-left: 0px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+}
+</style>
+
+
+<div class="container">
+    <div class="row mt-5 mb-3">
+        <div class="col-sm-12 col-md-3 col-lg-3">
+            <h1 class="mb-2">COMPARE<br />VEHICLES</h1>
+            <div class="row mb-5">
+                <div class="long me-1"></div>
+                <div class="short"></div>
+            </div>
+            <div class="row" style="margin-top:90px">
+                    <p>
+                         Body Style
+                    </p>
+                    <hr />
+                    <p>Transmission</p>
+                    <hr />
+                    <p>Engine Capacity</p>
+                    <hr />
+                    <p>Airbags Count</p>
+                    <hr />
+                    <p>Year</p>
+                    <hr />
+                    <p>Fuel Consumption</p>
+                    <hr />
+                    <p>Horse Power</p>
+                    <hr />
+                    <p>Luggage Box Capacity</p>
+                    <hr />
+                    <p>Seats Count</p>
+                    <hr />
+                    <p>Cylinders</p>
+                    <hr />
+                    <p>Maximum torque(N.m RPM)</p>
+                    <hr />
+                     <p>Fuel Type</p>
+                    <hr />
+                     <p>Drive Type</p>
+                    <hr />
+                     <p>Maximum power(HP  RPM) </p>
+                    <hr />
+                    <p>Acceleration From 0-100 (Km/hr.)</p>
+                    <hr />
+                    <p>Maximum Speed</p>
+                    <hr />
+                    <p>Fuel Tank Capacity</p>
+                    <hr />
+                    <p>Gear Shifts</p>
+                    <hr />
+                    <p>Folding for back seats</p>
+                    <hr />
+                    <p>Paddle Shifter</p>
+                    <hr />
+                    <p>Ambient Lighting</p>
+                    <hr />
+                    <p>Steering Wheel</p>
+                    <hr />
+                    <p>Number of Seats </p>
+                    <hr />
+                    <p>Rear Parking Sensor </p>
+                    <hr />
+                    <p>Rear View Camera </p>
+                    <hr />
+                    <p>Parking Sensor </p>
+                    <hr />
+                    <p>Electronic Window </p>
+                    <hr />
+                    <p>Keyless Entry </p>
+                    <hr />
+                    <p>Auto Dimming Mirror</p>
+                    <hr />
+                    <p>Air Condition</p>
+                    <hr />
+                    <p>Keyless Start</p>
+                    <hr />
+                    <p>Front Camera </p>
+                    <hr />
+                    <p>Center Lock</p>
+                    <hr />
+                    <p>Dashboard</p>
+                    <hr />
+                    <p>Rain Sensor</p>
+                    <hr />
+                    <p>Foq Lamp </p>
+                    <hr />
+                    <p>Rear Lamp </p>
+                    <hr />
+                    <p>Auto Lighting</p>
+                    <hr />
+                    <p>Wheel with tire size </p>
+                    <hr />
+                    <p>Panorama Roof</p>
+                    <hr />
+                    <p>Privacy Glass </p>
+                    <hr />
+                    <p>Light Sensors</p>
+                    <hr />
+                    <p>Power Mirrors</p>
+                    <hr />
+                    <p>Speed Limiter</p>
+                    <hr />
+                    <p>Tire Pressure Monitoring</p>
+                    <hr />
+                    <p>Electronic Brake Force Distribution Lighting</p>
+                    <hr />
+                    <p>Electric Handbrake</p>
+                    <hr />
+                    <p>Active Park Assist </p>
+                    <hr />
+                    <p>AUX</p>
+                    <hr />
+                    <p>USB</p>
+                    <hr />
+                    <p>Bluetooth</p>
+                    <hr />
+                    <p>Speakers</p>
+                    <hr />
+                    <p>Touch Screen</p>
+                    <hr />
+                    <p>Wireless Charger</p>
+                    <hr />
+                    <p>Smart Phone Link System</p>
+                    <hr />
+                    <p>Width</p>
+                    <hr />
+                    <p>Wheelbase</p>
+                    <hr />
+                    <p>Length</p>
+                    <hr />
+                    <p>Height</p>
+                    <hr />
+            </div>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000" class="col-sm-12 col-md-2 col-lg-2 offset-1">
+                @if (item.Model.Image == null)
+                {
+                    <a asp-controller="Compare" asp-action="Insert">
+                    <div class="card" style="width: 18rem;height:9rem!important;">
+                    <img src="/Images/download.png" height=100rem; class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <p class="card-text">@item.Model.ModelName</p>
+                    </div>
+                </div>
+                    </a>
+                }
+                else
+                {
+                    
+                <div  class="card" style="width: 18rem;height:9rem!important;">
+                    <span style="position:absolute;top:0;right:2px">
+                        <a asp-controller="Compare" asp-action="Delete" asp-route-id="@item.CompareID">
+
+                            <i class="bi bi-x fs-4 text-danger"></i>
+                        </a>
+
+                    </span>
+                    <img src="/Images/@item.Model.Image" height=100rem; class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <p class="card-text">@item.Model.ModelName</p>
+                    </div>
+                </div>
+                }
+            <div class="row" style="margin-top:55px">
+                @if(item.Model.Body_Style==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>
+                         @item.Model.Body_Style
+                    </p>
+                    <hr />
+                    }
+                    @if(item.Model.Transmission==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {   
+                    <p>@item.Model.Transmission</p>
+                    <hr />
+                    }
+                    @if(item.Model.Engine_Capacity==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Engine_Capacity</p>
+                    <hr />
+                    }
+                    @if(item.Model.Airbags_count==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Airbags_count</p>
+                    <hr />
+                    }
+                    @if(item.Model.Year==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Year</p>
+                    <hr />
+                    }
+                    @if(item.Model.Fuelconsumption==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {          
+                    <p>@item.Model.Fuelconsumption</p>
+                    <hr />
+                    }
+                    @if(item.Model.Horse_power==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Horse_power</p>
+                    <hr />
+                    }
+                    @if(item.Model.Luggageboxcapacity==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Luggageboxcapacity</p>
+                    <hr />
+                    }
+                    @if(item.Model.Seats_count==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Seats_count</p>
+                    <hr />
+                    }
+                    @if(item.Model.Cylinders==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {     
+                    <p>@item.Model.Cylinders</p>
+                    <hr />
+                    }
+                    @if(item.Model.Maximum_torque==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Maximum_torque</p>
+                    <hr />
+                    }
+                    @if(item.Model.Fuel_Type==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Fuel_Type</p>
+                    <hr />
+                    }
+                    @if(item.Model.Drive_Type==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Drive_Type</p>
+                    <hr />
+                    }
+                    @if(item.Model.Maximum_power==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Maximum_power</p>
+                    <hr />
+                    }
+                    @if(item.Model.Acceleration==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Acceleration</p>
+                    <hr />
+                    }
+                    @if(item.Model.Maximum_Speed==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Maximum_Speed</p>
+                    <hr />
+                    }
+                    @if(item.Model.Fuel_Tank_Capacity==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Fuel_Tank_Capacity</p>
+                    <hr />
+                    }
+                    @if(item.Model.Gear_Shifts==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Gear_Shifts</p>
+                    <hr />
+                    }
+                    @if(item.Model.folding_for_back_seats==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {    
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Paddle_shifters==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Ambient_Lighting==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Steering_Wheel==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Number_of_Seats==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Number_of_Seats</p>
+                    <hr />
+                    }
+                    @if(item.Model.Rear_parking_sensors==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Rear_View_Camera==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Parking_Sensors==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Electronic_Window==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Keyless_Entry==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Auto_dimming_mirror==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Air_Condition==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Air_Condition</p>
+                    <hr />
+                    }
+                    @if(item.Model.Keyless_Start==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Front_Camera==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Center_Lock==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Dashboard==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Dashboard</p>
+                    <hr />
+                    }
+                    @if(item.Model.RainSensor==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Foglamps==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.RearLamps==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {    
+                    <p>@item.Model.RearLamps</p>
+                    <hr />
+                    }
+                    @if(item.Model.Auto_lighting==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Wheels_with_tire_size==null)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Wheels_with_tire_size</p>
+                    <hr />
+                    }
+                    @if(item.Model.Panorama_Roof==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Privacy_glass==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Light_Sensors==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Power_mirrors==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Speed_Limiter==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Tire_Pressure_Monitoring==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Electronic_Brake_Force_Distribution==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Electric_Handbrake==false)
+                    {<p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Active_Park_Assist==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.AUX==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.USB==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Bluetooth==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Speakers==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Touch_screen==false)
+                    {
+                        <p>
+                     <i class="bi bi-x text-danger"></i>
+                     </p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i>
+                     </p>
+                    <hr />
+                    }
+                    @if(item.Model.Wireless_Charger==false)
+                    {
+                        <p>
+                      <i class="bi bi-x text-danger"></i></p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i></p>
+                    <hr />
+                    }
+                    @if(item.Model.Smartphone_Link_Systems==false)
+                    {
+                        <p>
+                        <i class="bi bi-x  text-danger"></i></p>
+                        <hr />
+                    }
+                    else
+                    {
+                        <p>
+                     <i class="bi bi-check text-success"></i></p>
+                    <hr />
+                    }
+                    @if(item.Model.Width==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Width</p>
+                    <hr />
+                    }
+                    @if(item.Model.Wheelbase==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Wheelbase</p>
+                    <hr />
+                    }
+                    @if(item.Model.Length==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Length</p>
+                    <hr />
+                    }
+                    @if(item.Model.Height==0)
+                    {
+                        <p>-</p>
+                        <hr />
+                    }
+                    else
+                    {
+                        
+                    <p>@item.Model.Height</p>
+                    <hr />
+                    }
+            </div>
+        </div>
+            
+        }
+    </div>
+</div>
+@section Count{
+    @ViewBag.count
+}

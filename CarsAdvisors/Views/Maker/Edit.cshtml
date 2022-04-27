@@ -1,0 +1,98 @@
+﻿@model Maker
+@{
+    Layout = "_Layout";
+}
+
+<style>
+    .Header-img{
+        background:linear-gradient(to bottom, rgba(95, 94, 93, 0.514) 0%, rgba(95, 94, 93, 0.514) 100%)
+
+    }
+    span{
+        color:orange;
+    }
+    .navbar{
+        top:60px;
+        background:rgba(0, 0, 0, 0.526);
+    }
+    .label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+.lblCartCount {
+    font-size: 1rem;
+    background: #ff9100!important;
+    color: #fff;
+    padding: 3px 5px;
+    vertical-align: top;
+    margin-left: 0px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+}
+</style>
+
+
+<div >
+    <img class="Header-img" src="/Images/Car-Brand.jpg"  width=100% height=500px/> 
+</div>
+
+
+<div class="container Newmark" style="align-content:center;">
+
+<div class="row mt-4">
+    <h4 class="p-3 ">Edit <span>Make</span></h4>
+        <form asp-action="SaveEdit" asp-route-id="@Model.ID" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-sm-12 col-md-6 col-lg-6 offset-lg-3 offset-md-3 form-group text-center my-3">
+                    
+                        <label  class="control-label my-2"> Make <span >Name</span></label>
+                        <input asp-for="MakerName" class="form-control" />
+                        <span asp-validation-for="MakerName" class="text-danger"></span>
+                    
+
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 offset-lg-3 offset-md-3 form-group text-center my-3">
+
+                        <label  class="control-label my-2 ">Make <span>Image</span></label>
+                        <input type="file" value="D:\Lameees\New folder\CarsAdvisors\CarsAdvisors\wwwroot\@Model.MakerImage" asp-for="MakerImage" class="form-control" />
+                        <span asp-validation-for="MakerImage" class="text-danger"></span>
+                </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 offset-lg-3 offset-md-3 form-group text-center">
+
+                    <input type="submit" value="Save" class="btn btn-danger" />
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        if (scroll > 40) {
+            $(".navbar").css("background", "rgba(0, 0, 0, 0.526)");
+            $(".navbar").css("position", "fixed");
+            $(".navbar").css("top", "0");
+        } else {
+            $(".navbar").css("position", "fixed");
+            $(".navbar").css("top", "60px");
+
+
+
+        }
+    })
+})
+</script>
+@section Count{
+    @ViewBag.count
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

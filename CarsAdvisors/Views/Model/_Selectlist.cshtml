@@ -1,0 +1,10 @@
+﻿
+@model List<Model>
+<select name="Model" class="custom-select" style="height:50px; border-color:red">
+    <option selected disabled >Choose Model</option>                    
+@foreach (var item in Model)
+    {
+        <option class="form-control">@item.ModelName</option>
+                        
+    }
+</select>

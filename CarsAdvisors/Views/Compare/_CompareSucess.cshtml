@@ -1,0 +1,39 @@
+﻿@model Model
+
+
+@if ((string)TempData["Sucess"] !=null)
+{
+    <div id="compare" class="alert alert-success d-flex justify-content-between"  role="alert">
+        <span>
+            <img src="/Images/@Model.Image" width=100px height=50px>
+            <span>Has been Added To Compare List</span>
+        </span>
+        <a class="btn my-auto" style="border:1px solid" asp-controller="Compare" asp-action="Compare">Compare</a>
+        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+else{
+    <div id="compare" class="alert text-white d-flex justify-content-between" style="background-color:red"  role="alert">
+
+        <p>
+         <i class="bi bi-exclamation-triangle text-white fs-3 me-2"></i>
+            You have already added 3 cars
+        </p>
+        <a class="btn text-white my-auto" style="border:1px solid white" asp-controller="Compare" asp-action="Compare">Compare</a>
+        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<script>
+        var Timeout = setTimeout(stoptime, 3000);
+function stoptime() {
+    document.getElementById("compare").setAttribute ('style', 'display: none !important;');;
+  clearTimeout(myTimeout);
+}
+</script>
+
+@section Count{
+    @ViewBag.count
+
+}
+

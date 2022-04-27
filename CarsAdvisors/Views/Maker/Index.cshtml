@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CarsAdvisors.Models.Maker>
+@{
+    Layout = "_Layout";
+    SelectList Maker = new SelectList(ViewBag.Make, "ID", "MakerName");
+}
+<style>
+    body{
+        background-color:white;
+    }
+
+    .items{
+        background-color:white;
+        transition: all .2s ease-in-out;
+
+    }
+    .items:hover{
+        transform:scale(1.1);
+    }
+    select{
+        width:200px!important;
+    }
+    .label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+.lblCartCount {
+    font-size: 1rem;
+    background: #ff9100!important;
+    color: #fff;
+    padding: 3px 5px;
+    vertical-align: top;
+    margin-left: 0px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+    
+</style>
+
+
+<div class="container" style="align-content:center;">
+
+    <div class="row my-5 justify-content-center">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <div class="d-flex justify-content-between">
+            <h3 style="color:orange">Makes</h3>
+            <a class="btn btn-danger" asp-action="New">Create New Make</a>
+            </div>
+            <hr class="text-white" />
+            <div class="d-flex flex-wrap">
+                @foreach (var item in Model)
+               {
+                   <div class="items me-2 mt-2" width=150px height=60px>
+                       <a asp-action="Edit" asp-route-id="@item.ID">
+                            <img class="mt-2" src="~/Images/@item.MakerImage" width=150px height=70px />
+                       </a>
+                       <p class="text-center h-5">@item.MakerName</p>
+                   </div>
+               }
+
+            </div>
+        </div>
+
+            
+
+    </div>
+</div>
+
+
+@section Count{
+    @ViewBag.count
+}

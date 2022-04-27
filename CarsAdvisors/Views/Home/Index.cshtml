@@ -1,0 +1,68 @@
+﻿@model List<Model>
+@{
+    Layout = "_HomeLayout";
+}
+<style>
+    .card{
+        background-color:#3f3f3f!important;
+    }
+    .label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+.lblCartCount {
+    font-size: 1rem;
+    background: #ff9100!important;
+    color: #fff;
+    padding: 3px 5px;
+    vertical-align: top;
+    margin-left: 0px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+}
+.card-img-top{
+    opacity:0.8;
+}
+.card-img-top:hover{
+    opacity:1;
+}
+</style>
+<div class="col-sm-12 col-md-12 col-lg-12 d-flex flex-wrap justify-content-sm-center">
+@foreach (var item in Model)
+{
+<a asp-controller="Model" asp-action="Details" asp-route-id="@item.ID">
+   <div data-aos="fade-up" data-aos-duration="1000" class="card me-5 my-5" style="width: 23rem;">
+        <img  src="/Images/@item.Image" class="card-img-top" alt="..." width=500px height=200px>
+        <div class="card-body">
+        <div class="row">
+        <div class="d-flex mb-2">
+            <h4 class="text-white">@item.ModelName</h4>
+                <span class="h4 my-auto ms-auto" style="color:Orange">
+                    @item.Price 
+
+                </span>
+             </div>
+            <hr class="text-white"/>
+            </div>
+            <div class="row">
+            <div class="d-flex justify-content-around">
+                <span class="text-white">
+                    <img src="/Images/calendar.png" width=20px height=20px> @item.Year</span>
+                <span class="text-white">
+                    <img src="/Images/manual-transmission.png" width=20px height=20px> @item.Transmission</span>
+                <span class="text-white">
+                    <img src="/Images/engineering.png" width=20px height=20px> @item.Engine_Capacity</span>
+            </div>
+            </div>
+       
+        </div>
+</div>
+</a>   
+
+}
+</div>
+

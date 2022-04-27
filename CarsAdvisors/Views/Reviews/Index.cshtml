@@ -1,0 +1,40 @@
+﻿@model List<News_Reviews>
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-12 col-lg-12 my-5">
+            <div class="d-flex justify-content-between ">
+            <h1>Reviews</h1>
+            <p>
+                <a class="btn btn-danger" asp-action="New">ADD New Review</a>
+            </p>
+            </div>
+            <div class="row d-flex justify-content-around flex-wrap ">
+                @foreach (var item in Model)
+               {
+
+                <div style="width:200px;height:200px;">
+                    <span style="position:relative;top:50px;right:2px">
+                        <a asp-controller="Reviews" asp-action="Delete" asp-route-id="@item.ID">
+
+                            <i class="bi bi-x fs-1 text-danger"></i>
+                        </a>
+
+                    </span>
+                    <iframe src="@item.VideoURL"></iframe>
+                </div>
+               }
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Count{
+    @ViewBag.count
+}

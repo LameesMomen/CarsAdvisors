@@ -1,0 +1,61 @@
+﻿
+ @{
+    Layout = "_LoginLayout";
+}
+ <style>
+     body{
+         background-image:url("/Images/613769.jpg");
+         background-repeat: no-repeat;
+         background-size: cover;
+         height: 100vh;
+         margin: 0;
+         padding-top: 50px;
+     }
+     .main {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.637);
+    margin: auto;
+    width: 500px;
+    height:fit-content;
+    padding: 20px;
+}
+.content{
+    width:300px;
+    margin:auto;
+}
+.pic{
+    border-radius:500px;
+    width:162px!important;
+    height:162px;
+    text-align:center;
+}
+
+ </style>
+ <div class="main">
+<form asp-controller="Role" asp-action="New">
+            <fieldset>
+                <legend class="text-center"> <img src="/Images/logo w BG.png" class="pic  rounded-circle"></legend>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                 <div class="content">
+                    <div class="form-group mb-2">
+                        <label class="form-label">Role</label>
+                        <input type="text" class="form-control" name="RoleName" />
+                    </div>
+                    <div class="form-group my-2">
+                        <input type="submit" value="Login" class="btn btn-dark form-control" />
+                    </div>
+                    <a asp-controller="Account" asp-action="Register">Create a New Account</a>
+                </div>
+            </fieldset>
+
+ </form>
+</div>
+ <div>
+    @if (TempData.ContainsKey("msg"))
+    {
+        <div>@TempData["msg"].ToString()</div>
+    }
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

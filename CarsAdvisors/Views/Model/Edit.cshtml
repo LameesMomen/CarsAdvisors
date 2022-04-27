@@ -1,0 +1,536 @@
+﻿@model Model
+
+@{
+    Layout = "_Layout";
+    SelectList Maker = new SelectList(ViewBag.Make, "ID", "MakerName");
+}
+<style>
+    .label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+.lblCartCount {
+    font-size: 1rem;
+    background: #ff9100!important;
+    color: #fff;
+    padding: 3px 5px;
+    vertical-align: top;
+    margin-left: 0px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+}
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-lg-10 offset-lg-1 offset-md-1">
+
+            <h4 class="p-4">Edit <span class="text-danger">Model</span></h4>
+            <hr />
+        </div>
+    </div>
+        <form asp-action="SaveEdit" asp-route-id="@Model.ID" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+            <div id="mainInfo" class="col-sm-12 col-md-6 col-lg-6 offset-lg-3 offset-md-3">
+                <p class="h5 my-2">Main <span style="color:orange;">Information</span></p>
+                <div class="form-group mb-2 ms-5">
+                    <label asp-for="ModelName" class="control-label mb-1"></label>
+                    <input asp-for="ModelName" class="form-control" />
+                    <span asp-validation-for="ModelName" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2 ms-5">
+                    <label asp-for="Price" class="control-label mb-1"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2 ms-5">
+                    <label asp-for="Maker_ID" class="control-label mb-1"></label>
+                <select class="form-control" asp-for="Maker_ID" asp-items="Maker">
+                    <option selected disabled>Choose Make</option>
+                </select>
+                </div>
+                <div class="form-group mb-2 ms-5">
+                    <label asp-for="Image" class="control-label mb-1"></label>
+                    <input type="file" name="File" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-2 ms-5">
+                    <label asp-for="Year" class="control-label mb-1"></label>
+                    <input asp-for="Year" class="form-control" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+                <hr />
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 offset-lg-3 offset-md-3">
+                <p class="h5 my-2">Other <span style="color:orange;">Information</span></p>
+                <details class="mb-2 ms-5 form-control" open>
+                    <summary>Main Specification</summary>
+                    
+                    <div class="form-group mb-2 ms-5">
+                        <label asp-for="Body_Style" class="control-label mb-1"></label>
+                        <input asp-for="Body_Style" class="form-control" />
+                        <span asp-validation-for="Body_Style" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-2 ms-5">
+                        <label asp-for="Transmission" class="control-label mb-1"></label>
+                        <input asp-for="Transmission" class="form-control" />
+                        <span asp-validation-for="Transmission" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-2 ms-5">
+                        <label asp-for="Engine_Capacity" class="control-label mb-1"></label>
+                        <input asp-for="Engine_Capacity" class="form-control" />
+                        <span asp-validation-for="Engine_Capacity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-2 ms-5">
+                        <label asp-for="Airbags_count" class="control-label mb-1"></label>
+                        <input asp-for="Airbags_count" class="form-control" />
+                        <span asp-validation-for="Airbags_count" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-2 ms-5">
+                        <label asp-for="Fuelconsumption" class="control-label mb-1"></label>
+                        <input asp-for="Fuelconsumption" class="form-control" />
+                        <span asp-validation-for="Fuelconsumption" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-2 ms-5">
+                        <label asp-for="Horse_power" class="control-label mb-1"></label>
+                        <input asp-for="Horse_power" class="form-control" />
+                        <span asp-validation-for="Horse_power" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-2 ms-5">
+                        <label asp-for="Luggageboxcapacity" class="control-label mb-1"></label>
+                        <input asp-for="Luggageboxcapacity" class="form-control" />
+                        <span asp-validation-for="Luggageboxcapacity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-2 ms-5">
+                        <label asp-for="Seats_count" class="control-label mb-1"></label>
+                        <input asp-for="Seats_count" class="form-control" />
+                        <span asp-validation-for="Seats_count" class="text-danger"></span>
+                    </div>
+                </details>
+                <details class="mb-2 ms-5 form-control" open>
+                    <summary>Performnace Features</summary>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Cylinders" class="control-label mb-1"></label>
+                <input asp-for="Cylinders" class="form-control" />
+                <span asp-validation-for="Cylinders" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Maximum_torque" class="control-label mb-1"></label>
+                <input asp-for="Maximum_torque" class="form-control" />
+                <span asp-validation-for="Maximum_torque" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Fuel_Consumption" class="control-label mb-1"></label>
+                <input asp-for="Fuel_Consumption" class="form-control" />
+                <span asp-validation-for="Fuel_Consumption" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Fuel_Type" class="control-label mb-1"></label>
+                <input asp-for="Fuel_Type" class="form-control" />
+                <span asp-validation-for="Fuel_Type" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Drive_Type" class="control-label mb-1"></label>
+                <input asp-for="Drive_Type" class="form-control" />
+                <span asp-validation-for="Drive_Type" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Maximum_power" class="control-label mb-1"></label>
+                <input asp-for="Maximum_power" class="form-control" />
+                <span asp-validation-for="Maximum_power" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Acceleration" class="control-label mb-1"></label>
+                <input asp-for="Acceleration" class="form-control" />
+                <span asp-validation-for="Acceleration" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Maximum_Speed" class="control-label mb-1"></label>
+                <input asp-for="Maximum_Speed" class="form-control" />
+                <span asp-validation-for="Maximum_Speed" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Fuel_Tank_Capacity" class="control-label mb-1"></label>
+                <input asp-for="Fuel_Tank_Capacity" class="form-control" />
+                <span asp-validation-for="Fuel_Tank_Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Gear_Shifts" class="control-label mb-1"></label>
+                <input asp-for="Gear_Shifts" class="form-control" />
+                <span asp-validation-for="Gear_Shifts" class="text-danger"></span>
+            </div>
+            </details>
+            <details class="mb-2 ms-5 form-control" open>
+                <summary>Interior Features</summary>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="folding_for_back_seats" /> @Html.DisplayNameFor(model => model.folding_for_back_seats)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Paddle_shifters" /> @Html.DisplayNameFor(model => model.Paddle_shifters)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Leather_Steering_Wheel" /> @Html.DisplayNameFor(model => model.Leather_Steering_Wheel)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Variable_heated_driver_and_passenger_seat" /> @Html.DisplayNameFor(model => model.Variable_heated_driver_and_passenger_seat)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Power_Tailgate" /> @Html.DisplayNameFor(model => model.Power_Tailgate)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Ambient_Lighting" /> @Html.DisplayNameFor(model => model.Ambient_Lighting)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Steering_Wheel" /> @Html.DisplayNameFor(model => model.Steering_Wheel)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Number_of_Seats" class="control-label mb-1"></label>
+                <input asp-for="Number_of_Seats" class="form-control" />
+                <span asp-validation-for="Number_of_Seats" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Rear_parking_sensors" /> @Html.DisplayNameFor(model => model.Rear_parking_sensors)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Rear_View_Camera" /> @Html.DisplayNameFor(model => model.Rear_View_Camera)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Passenger_Seat" class="control-label mb-1"></label>
+                <input asp-for="Passenger_Seat" class="form-control" />
+                <span asp-validation-for="Passenger_Seat" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Parking_Sensors" /> @Html.DisplayNameFor(model => model.Parking_Sensors)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Electronic_Window" /> @Html.DisplayNameFor(model => model.Electronic_Window)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Multi_function_steering_wheel" /> @Html.DisplayNameFor(model => model.Multi_function_steering_wheel)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Leather_Transmission" /> @Html.DisplayNameFor(model => model.Leather_Transmission)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Back_Holder" /> @Html.DisplayNameFor(model => model.Back_Holder)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Keyless_Entry" /> @Html.DisplayNameFor(model => model.Keyless_Entry)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Auto_dimming_mirror" /> @Html.DisplayNameFor(model => model.Auto_dimming_mirror)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Air_Condition" class="control-label mb-1"></label>
+                <input asp-for="Air_Condition" class="form-control" />
+                <span asp-validation-for="Air_Condition" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Keyless_Start" /> @Html.DisplayNameFor(model => model.Keyless_Start)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Front_Camera" /> @Html.DisplayNameFor(model => model.Front_Camera)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Driver_Seat" class="control-label mb-1"></label>
+                <input asp-for="Driver_Seat" class="form-control" />
+                <span asp-validation-for="Driver_Seat" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Leather_Seats" /> @Html.DisplayNameFor(model => model.Leather_Seats)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Center_Lock" /> @Html.DisplayNameFor(model => model.Center_Lock)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Dashboard" class="control-label mb-1"></label>
+                <input asp-for="Dashboard" class="form-control" />
+                <span asp-validation-for="Dashboard" class="text-danger"></span>
+            </div>
+            </details>
+             <details class="mb-2 ms-5 form-control">
+                    <summary>Exterior Features</summary>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="RainSensor" /> @Html.DisplayNameFor(model => model.RainSensor)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Foglamps" /> @Html.DisplayNameFor(model => model.Foglamps)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="RearLamps" class="control-label mb-1"></label>
+                <input asp-for="RearLamps" class="form-control" />
+                <span asp-validation-for="RearLamps" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Auto_lighting" /> @Html.DisplayNameFor(model => model.Auto_lighting)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Wheels_with_tire_size" class="control-label mb-1"></label>
+                <input asp-for="Wheels_with_tire_size" class="form-control" />
+                <span asp-validation-for="Wheels_with_tire_size" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Panorama_Roof" /> @Html.DisplayNameFor(model => model.Panorama_Roof)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Auto_Folding_Mirrors" /> @Html.DisplayNameFor(model => model.Auto_Folding_Mirrors)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Privacy_glass" /> @Html.DisplayNameFor(model => model.Privacy_glass)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Headlamps" class="control-label mb-1"></label>
+                <input asp-for="Headlamps" class="form-control" />
+                <span asp-validation-for="Headlamps" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="LED_Daytime_running_lamps" /> @Html.DisplayNameFor(model => model.LED_Daytime_running_lamps)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Light_Sensors" /> @Html.DisplayNameFor(model => model.Light_Sensors)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Sun_Roof" /> @Html.DisplayNameFor(model => model.Sun_Roof)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Power_mirrors" /> @Html.DisplayNameFor(model => model.Power_mirrors)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Rim_Size" class="control-label mb-1"></label>
+                <input asp-for="Rim_Size" class="form-control" />
+                <span asp-validation-for="Rim_Size" class="text-danger"></span>
+            </div>
+            </details>
+             <details class="mb-2 ms-5 form-control" open>
+                    <summary>Safety Features</summary>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Alarm_Anti_Theft_System" /> @Html.DisplayNameFor(model => model.Alarm_Anti_Theft_System)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Hill_Assist" /> @Html.DisplayNameFor(model => model.Hill_Assist)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Speed_Limiter" /> @Html.DisplayNameFor(model => model.Speed_Limiter)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Automatic_Start_Stop_Function" /> @Html.DisplayNameFor(model => model.Automatic_Start_Stop_Function)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Tire_Pressure_Monitoring" /> @Html.DisplayNameFor(model => model.Tire_Pressure_Monitoring)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Electronic_Brake_Force_Distribution" /> @Html.DisplayNameFor(model => model.Electronic_Brake_Force_Distribution)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Cruise_Control" /> @Html.DisplayNameFor(model => model.Cruise_Control)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Airbags" class="control-label mb-1"></label>
+                <input asp-for="Airbags" class="form-control" />
+                <span asp-validation-for="Airbags" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Electric_Handbrake" /> @Html.DisplayNameFor(model => model.Electric_Handbrake)
+                </label>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Power_Assisted_Steering" class="control-label mb-1"></label>
+                <input asp-for="Power_Assisted_Steering" class="form-control" />
+                <span asp-validation-for="Power_Assisted_Steering" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Active_Park_Assist" /> @Html.DisplayNameFor(model => model.Active_Park_Assist)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Traction_Control" /> @Html.DisplayNameFor(model => model.Traction_Control)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Anti_Lock_Braking_System" /> @Html.DisplayNameFor(model => model.Anti_Lock_Braking_System)
+                </label>
+            </div>
+            </details>
+                <details class="mb-2 ms-5 form-control" open>
+                    <summary>Multimedia System</summary>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AUX" /> @Html.DisplayNameFor(model => model.AUX)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="USB" /> @Html.DisplayNameFor(model => model.USB)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Multifunction_Steering_Wheel" /> @Html.DisplayNameFor(model => model.Multifunction_Steering_Wheel)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Navigation_System" /> @Html.DisplayNameFor(model => model.Navigation_System)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Speakers" /> @Html.DisplayNameFor(model => model.Speakers)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Bluetooth" /> @Html.DisplayNameFor(model => model.Bluetooth)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Head_Up_Display" /> @Html.DisplayNameFor(model => model.Head_Up_Display)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Touch_screen" /> @Html.DisplayNameFor(model => model.Touch_screen)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Wireless_Charger" /> @Html.DisplayNameFor(model => model.Wireless_Charger)
+                </label>
+            </div>
+            <div class="form-group form-check mb-2 ms-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Smartphone_Link_Systems" /> @Html.DisplayNameFor(model => model.Smartphone_Link_Systems)
+                </label>
+            </div>
+            </details>
+             <details class="mb-2 ms-5 form-control" open>
+                    <summary>Dimensions</summary>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Luggage_Box_Capacity" class="control-label mb-1"></label>
+                <input asp-for="Luggage_Box_Capacity" class="form-control" />
+                <span asp-validation-for="Luggage_Box_Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Width" class="control-label mb-1"></label>
+                <input asp-for="Width" class="form-control" />
+                <span asp-validation-for="Width" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Wheelbase" class="control-label mb-1"></label>
+                <input asp-for="Wheelbase" class="form-control" />
+                <span asp-validation-for="Wheelbase" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Length" class="control-label mb-1"></label>
+                <input asp-for="Length" class="form-control" />
+                <span asp-validation-for="Length" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2 ms-5">
+                <label asp-for="Height" class="control-label mb-1"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            </details>
+            </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+            
+        </form>
+    </div>
+
+
+@section Count{
+    @ViewBag.count
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

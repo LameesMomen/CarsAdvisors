@@ -1,0 +1,32 @@
+﻿@model CarsAdvisors.Models.News_Reviews
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-md-4 my-5">
+        <h1>News & Reviews</h1>
+        <hr />
+        <form asp-action="Insert">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group my-3">
+                <label asp-for="VideoURL" class="control-label"></label>
+                <input asp-for="VideoURL" class="form-control" />
+                <span asp-validation-for="VideoURL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ADD" class="btn btn-danger form-control" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+@section Count{
+    @ViewBag.count
+}

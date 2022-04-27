@@ -1,0 +1,1533 @@
+﻿@model CarsAdvisors.Models.Model
+@{
+    Layout = "_Translatelayout";
+}
+<style>
+    .label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+.lblCartCount {
+    font-size: 1rem;
+    background: #ff9100!important;
+    color: #fff;
+    padding: 3px 5px;
+    vertical-align: top;
+    margin-left: 0px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+}
+</style>
+
+
+<div class="container">
+    <div class="row my-5">
+        <div class="col-sm-12 col-md-7 col-lg-7">
+            <div class="d-flex justify-content-between">
+                <h3 class="p-2 text-danger" >@Model.ModelName</h3>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="dropdown" style="z-index:100">
+                        <button class="ms-auto bg-transparent" style="border:none;" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots fs-2 "></i>
+                        </button>
+                        <ul  class="dropdown-menu dropdown-menu-dark text-center" aria-labelledby="dropdownMenuButton2">
+                            <li><a class="dropdown-item " asp-controller="Model" asp-action="Edit" asp-route-id="@Model.ID">Edit</a></li>
+                            <li>
+                                <div class="dropdown-item ">
+
+                                    <!-- Button trigger modal -->
+                        <button type="button" style="border:none;" class="btn bg-transparent text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Delete
+                                    </button>
+                                </div>
+                            </li>
+                            <li><a class="dropdown-item " asp-controller="Image" asp-action="New" asp-route-id="@Model.ID">Add Image</a></li>
+
+
+                        </ul>
+                    </div>
+                }
+
+            </div>
+            <div class="row">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                    <img src="/Images/@Model.Image" class="d-block w-100" alt="...">
+                </div>
+                        @foreach (var item in ViewBag.Images)
+                       {
+                           <div class="carousel-item">
+                              <img src="/Images/@item.ImageName" class="d-block w-100" alt="...">
+                            </div>
+                   
+                       }
+          </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+        </div>
+        <div class="row">
+                    <details class="form-control my-2" open>
+                        <summary style="color:red">Main Specification</summary>
+                        <div class="row">
+
+                        <div class="col mt-2">
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Body_Style)
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Body_Style)
+                                </span>
+                            </div>
+                                <hr />
+                             <div class="d-flex justify-content-between">
+                                <span>
+                                     @Html.DisplayNameFor(model => model.Transmission)
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Transmission)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                     @Html.DisplayNameFor(model => model.Engine_Capacity)
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Engine_Capacity)
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                     @Html.DisplayNameFor(model => model.Airbags_count)
+                 
+                                </span>
+                                <span>
+                                     @Html.DisplayFor(model => model.Airbags_count)
+                        
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Year)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Year)
+
+                                </span>
+                            </div>
+                            <hr />
+                        </div>
+                        <div class="col ms-5 mt-2">
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Fuelconsumption)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Fuelconsumption)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Horse_power)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Horse_power)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Luggageboxcapacity)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Luggageboxcapacity)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Seats_count)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Seats_count)
+
+                                </span>
+                            </div>
+                            <hr />
+                        </div>
+                        </div>
+                    </details>
+                    <div class="row">
+                    <details class="form-control my-2" open>
+                        <summary style="color:red">Performance Feature</summary>
+                        <div class="row">
+                            <div class="col mt-2">
+                                <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Cylinders)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Cylinders)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Maximum_torque)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Maximum_torque)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Fuel_Consumption)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Fuel_Consumption)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Fuel_Type)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Fuel_Type)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Drive_Type)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Drive_Type)
+
+                                </span>
+                            </div>
+                            <hr />
+                            </div>
+                                <div class="col ms-5 mt-2">
+                                    <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Maximum_power)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Maximum_power)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Acceleration)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Acceleration)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Maximum_Speed)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Maximum_Speed)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Fuel_Tank_Capacity)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Fuel_Tank_Capacity)
+
+                                </span>
+                            </div>
+                            <hr />
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    @Html.DisplayNameFor(model => model.Gear_Shifts)
+
+                                </span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Gear_Shifts)
+
+                                </span>
+                            </div>
+                            <hr />
+                                 </div>
+                            </div>
+
+                    </details>
+                    </div>
+
+                    <div class="row">
+                                <details class="form-control my-2" open>
+                                    <summary style="color:red">Interior Feature</summary>
+                                    <div class="row">
+                                        <div class="col mt-2">
+                                            <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.folding_for_back_seats)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.folding_for_back_seats==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Paddle_shifters)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Paddle_shifters==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Leather_Steering_Wheel)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Leather_Steering_Wheel==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Variable_heated_driver_and_passenger_seat)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Variable_heated_driver_and_passenger_seat==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Power_Tailgate)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Power_Tailgate==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Ambient_Lighting)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Ambient_Lighting==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Steering_Wheel)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Steering_Wheel==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Number_of_Seats)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Number_of_Seats)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Rear_parking_sensors)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Rear_parking_sensors==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Rear_View_Camera)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Rear_View_Camera==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Passenger_Seat)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Passenger_Seat)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Parking_Sensors)
+
+                                            </span>
+                                            <span>
+                                               @if(Model.Parking_Sensors==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Electronic_Window)
+
+                                            </span>
+                                            <span>
+                                               @if(Model.Electronic_Window==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Multi_function_steering_wheel)
+
+                                            </span>
+                                            <span>
+                                               @if(Model.Multi_function_steering_wheel==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Leather_Transmission)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Leather_Transmission==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        </div>
+                                        <div class="col ms-5 mt-2">
+                                            <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Back_Holder)
+
+                                            </span>
+                                            <span>
+                                               @if(Model.Back_Holder==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Keyless_Entry)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Keyless_Entry==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Auto_dimming_mirror)
+
+                                            </span>
+                                            <span>
+                                               @if(Model.Auto_dimming_mirror==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Air_Condition)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Air_Condition)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Keyless_Start)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Keyless_Start==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Front_Camera)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Front_Camera==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Driver_Seat)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Driver_Seat)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Leather_Seats)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Leather_Seats==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Center_Lock)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Center_Lock==true)
+                                                                {
+                                                                    <i class="bi bi-check fs-4 text-success"></i>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <i class="bi bi-x fs-4 text-danger"></i>
+                                                                }
+                                          
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Dashboard)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Dashboard)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                         </div>
+                                    </div>
+                                </details>
+                    </div>
+                    <div class="row">
+                            <details class="form-control my-2" open>
+                                <summary style="color:red">Exterior Feature</summary>
+                                <div class="row">
+                                    <div class="col mt-2">
+                                        <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.RainSensor)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.RainSensor==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Foglamps)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.Foglamps==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.RearLamps)
+
+                                        </span>
+                                        <span>
+                                               @Html.DisplayFor(model => model.RearLamps)
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Auto_lighting)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.Auto_lighting==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Wheels_with_tire_size)
+
+                                        </span>
+                                        <span>
+                                           @Html.DisplayFor(model => model.Wheels_with_tire_size)
+
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Panorama_Roof)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.Panorama_Roof==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Auto_Folding_Mirrors)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.Auto_Folding_Mirrors==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />  
+                                 </div>
+                                  <div class="col mt-2 ms-5">
+                                        <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Privacy_glass)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.Privacy_glass==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Headlamps)
+
+                                        </span>
+                                        <span>
+                                             @Html.DisplayFor(model => model.Headlamps)
+
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.LED_Daytime_running_lamps)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.LED_Daytime_running_lamps==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Light_Sensors)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.Light_Sensors==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Sun_Roof)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.Sun_Roof==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Power_mirrors)
+
+                                        </span>
+                                        <span>
+                                            @if(Model.Power_mirrors==true)
+                                                            {
+                                                                <i class="bi bi-check fs-4 text-success"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="bi bi-x fs-4 text-danger"></i>
+                                                            }
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    <div class="d-flex justify-content-between">
+                                        <span>
+                                            @Html.DisplayNameFor(model => model.Rim_Size)
+
+                                        </span>
+                                        <span>
+                                          @Html.DisplayFor(model => model.Rim_Size)
+
+                                        </span>
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                            </details>
+
+                    </div>
+                    <div class="row">
+                        <details class="form-control my-2" open>
+                             <summary style="color:red">Safety Feature</summary>
+                                <div class="row">
+                                    <div class="col mt-2">
+                                         <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Alarm_Anti_Theft_System)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Alarm_Anti_Theft_System==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Hill_Assist)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Hill_Assist==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Speed_Limiter)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Speed_Limiter==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Automatic_Start_Stop_Function)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Automatic_Start_Stop_Function==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Tire_Pressure_Monitoring)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Tire_Pressure_Monitoring==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Electronic_Brake_Force_Distribution)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Electronic_Brake_Force_Distribution==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Cruise_Control)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Cruise_Control==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                    <div class="col mt-2 ms-5">
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Airbags)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Airbags)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Electric_Handbrake)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Electric_Handbrake==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Power_Assisted_Steering)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Power_Assisted_Steering)
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Active_Park_Assist)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Active_Park_Assist==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Traction_Control)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Traction_Control==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Anti_Lock_Braking_System)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Anti_Lock_Braking_System==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                        </details>
+                    </div>
+                    <div class="row">
+                        <details class="form-control my-2" open>
+                             <summary style="color:red">Multimedia System</summary>
+                                <div class="row">
+                                    <div class="col mt-2">
+                                         <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.AUX)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.AUX==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.USB)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.USB==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Multifunction_Steering_Wheel)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Multifunction_Steering_Wheel==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Navigation_System)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Navigation_System==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Speakers)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Speakers==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                    <div class="col ms-5 mt-2">
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Bluetooth)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Bluetooth==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Head_Up_Display)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Head_Up_Display==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Touch_screen)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Touch_screen==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Wireless_Charger)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Wireless_Charger==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Smartphone_Link_Systems)
+
+                                            </span>
+                                            <span>
+                                                @if(Model.Smartphone_Link_Systems==true)
+                                                    {
+                                                        <i class="bi bi-check fs-4 text-success"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="bi bi-x fs-4 text-danger"></i>
+                                                    }
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                        </details>
+                    </div>
+                    <div class="row">
+                        <details class="form-control my-2" open>
+                             <summary style="color:red">Dimension</summary>
+                                <div class="row">
+                                    <div class="col mt-2">
+                                         <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Luggage_Box_Capacity)
+
+                                            </span>
+                                            <span>
+                                                 @Html.DisplayFor(model => model.Luggage_Box_Capacity)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Width)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Width)
+
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Wheelbase)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Wheelbase)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                    <div class="col mt-2 ms-5">
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Length)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Length)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                        <div class="d-flex justify-content-between">
+                                            <span>
+                                                @Html.DisplayNameFor(model => model.Height)
+
+                                            </span>
+                                            <span>
+                                                @Html.DisplayFor(model => model.Height)
+
+                                            </span>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                </div>
+                             </details>
+                        </div>
+                               
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 ofsset-md-1 offset-lg-1">
+            <div class="p-2 bg-danger" style="width:250px;height:50px;">
+                <h3 class="text-white my-auto ms-5 my-5 mx-auto">@Model.Price</h3>
+            </div>
+            <div class="row sticky-top" style="top:30px">
+            <div class="row">
+                <div class="mt-5 mb-3" style="border-bottom:3px solid red">
+                    <p class="h4 mb-3">
+                        For Advice
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <img src="/Images/239502970_106315815098939_167385082857820009_n.png" class="rounded-circle me-2" width="50px" height="50px" alt="">
+                        <span class="">Hossam Zaki</span>
+                </div>
+                <div>
+                <div class="mb-2 text-center ">
+                        <i class="bi bi-telephone fs-4 text-danger"></i>
+                        <span class="">
+                        +20 101 190 9018
+
+                        </span>
+                </div>
+                <div class="d-flex justify-content-around">
+                 <span class="icons my-3 ">
+                    <a href="https://www.facebook.com/CarsAdvisors" target="_blank" class="mx-1">
+                        <i class="bi bi-facebook fs-4 text-info"></i>
+
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCEhf-AIjZkzQtBs8Hq7m8kA" target="_blank" class="mx-1">
+                        <i class="bi bi-youtube fs-4 text-danger"></i>
+
+                    </a>
+                    <a href="https://www.instagram.com/cars_advisors_by_hossam_zaki/" target="_blank" class="mx-1">
+                        <i class="bi bi-instagram fs-4 text-warning"></i>
+
+                    </a>
+                </span>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                Do You Want to Delete
+                              </div>
+                              <div class="modal-footer">
+                                <a asp-controller="Model" asp-action="Delete" asp-route-id="@Model.ID" type="button" class="btn btn-primary">Delete</a>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+</div>
+
+@section Count{
+    @ViewBag.count
+}
+

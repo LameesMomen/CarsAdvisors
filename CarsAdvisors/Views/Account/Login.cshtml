@@ -1,0 +1,68 @@
+﻿ @model CarsAdvisors.ViewModel.LoginViewModel
+
+ @{
+    Layout = "_LoginLayout";
+}
+ <style>
+     body{
+         background-image:url("/Images/613769.jpg");
+         background-repeat: no-repeat;
+         background-size: cover;
+         height: 100vh;
+         margin: 0;
+         padding-top: 50px;
+     }
+     .main {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.637);
+    margin: auto;
+    width: 500px;
+    height:fit-content;
+    padding: 20px;
+}
+.content{
+    width:300px;
+    margin:auto;
+}
+.pic{
+    border-radius:500px;
+    width:162px!important;
+    height:162px;
+    text-align:center;
+}
+
+ </style>
+ <div class="main">
+<form asp-controller="Account" asp-action="Login">
+            <fieldset>
+                <legend class="text-center"> <img src="/Images/logo w BG.png" class="pic  rounded-circle"></legend>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                 <div class="content">
+                    <div class="form-group mb-2">
+                        <label asp-for="username" class="control-label my-1"></label>
+                        <input asp-for="username" placeholder="Enter Your Username" class="form-control" />
+                        <span asp-validation-for="username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group my-2">
+                        <label asp-for="password" class="control-label my-1"></label>
+                        <input asp-for="password" placeholder="Enter Your Password" class="form-control" />
+                        <span asp-validation-for="password" class="text-danger"></span>
+                    </div>
+                    <div class="form-check my-2">
+                        <input asp-for="RememberMe"  class="form-check-inpul me-2" />
+                        <label asp-for="RememberMe" class="form-check-label my-1"></label>
+                        <span asp-validation-for="RememberMe" class="text-danger"></span>
+                    </div>
+                    <div class="form-group my-2">
+                        <input type="submit" value="Login" class="btn btn-dark form-control" />
+                    </div>
+                    <a asp-controller="Account" asp-action="Register">Create a New Account</a>
+                </div>
+            </fieldset>
+
+ </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

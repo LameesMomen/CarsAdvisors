@@ -1,0 +1,190 @@
+﻿@model List<Model>
+@{
+    Layout = "_Layout";
+
+}
+
+<style>
+    body{
+        background-image:url("/Images/17283170.jpg");
+        background-repeat:no-repeat;
+        background-size:cover;
+        background-attachment:fixed;
+    }
+    .card{
+        background-color:#3f3f3f!important;
+    }
+    .compare{
+        position:absolute;
+        top:10px;
+        left:10px;
+    }
+    .compare:hover:after{
+        content:"ADD TO COMPARE";
+        color:orange;
+    }
+    .label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+.lblCartCount {
+    font-size: 1rem;
+    background: #ff9100!important;
+    color: #fff;
+    padding: 3px 5px;
+    vertical-align: top;
+    margin-left: 0px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+}
+</style>
+
+<div class="container">
+    <div id="div1" class=" sticky-top" style="top:55px">
+                 
+    </div>
+    @if(TempData["error"] != null ){
+        <div id="search" class="alert text-white d-flex justify-content-between" style="background-color:red"  role="alert">
+
+        <p>
+         <i class="bi bi-exclamation-triangle text-white fs-3 me-2"></i>
+            No Cars Available with this Make or Model Name
+        </p>
+        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    }
+    <div class="row ">
+        <div class="col-sm-12 col-md-8 col-lg-8">
+            <div class=" mt-5 mb-3 d-flex justify-content-between">
+            <h2 class="text-white">ALL CARS</h2>
+            @if(User.IsInRole("Admin"))
+                        {
+            <span>
+                <a class="btn btn-danger text-white" asp-controller="Model" asp-action="New">ADD New Model</a>
+            </span>
+                        }
+            </div>
+            <hr class="text-white fs-1"/>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 d-flex flex-wrap justify-content-sm-center">
+                        @foreach (var item in Model)
+                        {
+                           <div data-aos="fade-right" class="card me-5 my-3" style="width: 23rem;">
+                              
+                                   <button  id="model_id"  onclick="count(),AddCompare(@item.ID)"  class="compare bg-transparent" style="border:none;">
+                                       <i class="bi bi-compass fs-5 text-warning"></i>  
+                                   </button>
+                                  
+                               
+                                <img src="/Images/@item.Image" class="card-img-top" alt="..." width=500px height=200px>
+                        <a asp-controller="Model" asp-action="Details" asp-route-id="@item.ID">
+                                <div class="card-body">
+                                <div class="row">
+                                <div class="d-flex mb-2">
+                                    <h4 class="text-white">@item.ModelName</h4>
+                                        <span class="h4 my-auto ms-auto" style="color:Orange">
+                                            @item.Price 
+
+                                        </span>
+                                     </div>
+                                    <hr class="text-white"/>
+                                    </div>
+                                    <div class="row">
+                                    <div class="d-flex justify-content-around">
+                                        <span class="text-white">
+                                            <img src="/Images/calendar.png" width=20px height=20px> @item.Year</span>
+                                        <span class="text-white">
+                                            <img src="/Images/manual-transmission.png" width=20px height=20px> @item.Transmission</span>
+                                        <span class="text-white">
+                                            <img src="/Images/engineering.png" width=20px height=20px> @item.Engine_Capacity</span>
+                                    </div>
+                                    </div>
+       
+                                </div>
+                        </a>   
+                        </div>
+
+                        }
+                 </div>
+
+
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-3 offset-1 " >
+            <div  data-aos="fade-left" class="row sticky-top" style="top:100px">
+            <div class="mt-5 mb-5 d-flex justify-content-between">
+                <h2 class="text-white">Search</h2>
+                <a class="btn btn-danger text-white fs-5">RESET</a>
+            </div>
+            <form asp-controller="Model" asp-action="Search">
+            <div class="row mb-3">
+                <select id="make" name="Make" onchange="model()" class="custom-select" style="height:50px; border-color:red">
+                    <option selected disabled >Choose Make</option>
+                    @foreach (var item in ViewBag.Make)
+                    {
+                        <option class="form-control">@item.MakerName</option>
+                        
+                    }
+                </select>
+            </div>
+            <div  id="span1" class="row mb-3">
+                
+            </div>
+            
+            <div class="row mb-3">
+                <input type="submit" class="btn btn-danger" value="Search"/>
+            </div>
+            </form>
+        </div>
+             
+        </div>
+
+    </div>
+</div>
+<script>
+    function AddCompare(id){
+        console.log(id);
+        $.ajax({
+            url:"/Compare/Insert/",
+            data:{"Model_ID":id},
+            success:function(result){
+             $("#div1").html(result);
+            }
+        });
+    }
+    function model(){
+        var id=$("#make").val();
+        console.log(id);
+        $.ajax({
+            url:"/Model/Modellist/",
+            data:{"id":id},
+            success:function(result){
+             $("#span1").html(result);
+            }
+        });
+    }
+    function count(){
+        $.ajax({
+            url:"/Compare/Count/",
+            success:function(result){
+             $("#count").html(result);
+            }
+        });
+    }
+    var myTimeout = setTimeout(stop, 3000);
+function stop() {
+    document.getElementById("search").setAttribute ('style', 'display: none !important;');;
+  clearTimeout(myTimeout);
+}
+    
+</script>
+
+@section Count{
+        <span id="count" >@ViewBag.count</span>
+
+}
